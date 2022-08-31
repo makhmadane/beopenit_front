@@ -1,0 +1,67 @@
+<input
+type="text" class="form-control" name="research"
+  placeholder="Recherche..."
+  [(ngModel)]="search" class="col-md-3"
+/>
+
+<table class="table  table_demande" #listeDemandeSearch>
+  <thead>
+   <tr>
+      <th><span>Name </span></th>
+      <th><span>Description </span></th>
+      <th><span>Prix</span></th>
+      <th><span>Categorie</span></th>
+      <th>Actions</th>
+     
+
+     
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of produits|CrudProduitFiltre:search">
+   
+    <td>{{p[1]}}</td>
+    <td>{{p[2]}}</td>
+    <td>{{p[3]}}</td>
+    <td>{{p[4]}}</td>
+    <td>
+      <div class="btn-group flex-btn-group-container options">
+        <button (click)="getById(p[0])" class="fa fa-trash icon_table" style="margin-right: 10px ;color:hsl(226, 98%, 41%)">Modify</button>
+        <button (click)="deleteSupprimer(p[0])" class="fa fa-trash icon_table" style="margin-right: 10px ;color:#d0021b">delete</button>
+
+      </div>
+    </td>
+    </tr>
+  </tbody>
+  <tfoot>
+
+  </tfoot>
+</table>
+
+
+
+<form #addForm="ngForm" (ngSubmit)="onAddProduct(addForm)">
+  <div class="mb-3">
+    <label for="name" class="col-form-label">Name:</label>
+    <input type="text" class="form-control" id="name" ngModel name="name">
+  </div>
+  <div class="mb-3">
+    <label for="description" class="col-form-label">Description:</label>
+    <input type="text" class="form-control" id="description" ngModel name="description">
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="col-form-label">Price:</label>
+    <input type="text" class="form-control" id="price" ngModel name="price">
+  </div>
+  <div class="mb-3">
+    <label for="quantity" class="col-form-label">Quantity:</label>
+    <input type="text" class="form-control" id="quantity" ngModel name="category">
+  </div>
+  <div class="float-end">
+    <button  type="submit" class="btn btn-primary">Add Product</button>
+  </div>
+</form>
